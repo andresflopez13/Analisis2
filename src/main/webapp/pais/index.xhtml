@@ -1,0 +1,46 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+<f:loadBundle basename="resources.application" var="msg" />
+
+<h:head>
+	<title><h:outputText value="#{msg['pais.titulo']}" /></title>
+</h:head>
+
+<h:body>
+	<h:form>
+		<h:panelGrid columns="3">
+			<f:facet name="header">#{msg['pais.formRegistrar']}</f:facet>
+			<h:outputLabel for="codigo" value="#{msg['pais.codigo']}" />
+			<h:inputText id="codigo" value="#{paisBean.pais.codigo}" />
+			<h:message for="codigo" />
+			<h:outputLabel for="nombre" value="#{msg['pais.nombre']}" />
+			<h:inputText id="nombre" value="#{paisBean.pais.nombre}" />
+			<h:message for="nombre" />
+			<f:facet name="footer">
+				<h:commandButton value="#{msg['pais.registrar']}"
+					action="#{paisBean.registrar}" />
+				<h:messages />
+			</f:facet>
+		</h:panelGrid>
+	</h:form>
+	<h:form>
+		<h:dataTable value="#{paisBean.paices}" var="pais" border="1">
+			<f:facet name="header">#{msg['pais.tituloTabla']}</f:facet>
+			<h:column>
+				<f:facet name="header">#{msg['pais.codigo']}</f:facet>#{pais.codigo}</h:column>
+			<h:column>
+				<f:facet name="header">#{msg['pais.nombre']}</f:facet>#{pais.nombre}</h:column>
+			<h:column>
+				<h:commandLink value="#{msg['pais.eliminar']}"
+					action="#{paisBean.eliminar(pais)}"></h:commandLink>
+			</h:column>
+		</h:dataTable>
+	</h:form>
+</h:body>
+</html>
